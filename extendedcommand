@@ -1,0 +1,10 @@
+run_program("/sbin/cp", "-R", "/cache/recovery", "/tmp/recovery");
+ui_print("ROM Manager Version 5.5.2.0");
+ui_print("2013年9月4日");
+ui_print("Preparing to install ROM...");
+run_program("/cache/dowipedalvikcache.sh");
+mount("/system");
+run_program("/sbin/chmod", "+x", "/tmp/recovery/11-rommanager.sh");
+run_program("/tmp/recovery/11-rommanager.sh", "place");
+run_program("/sbin/umount", "/system");
+assert(install_zip("/sdcard/update.zip"));
